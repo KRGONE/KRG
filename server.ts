@@ -123,9 +123,13 @@ async function startServer() {
 
     } catch (error: any) {
       console.error("[SMTP RUNTIME FAILURE]:", error);
+      let errorMessage = error?.message || "Internal server error during email transmission.";
+      if (errorMessage.includes("GMAIL_USER") || errorMessage.includes("GMAIL_APP_PASSWORD")) {
+        errorMessage = "SMTP service is unconfigured. Please configure 'GMAIL_USER' and 'GMAIL_APP_PASSWORD' as Environment Variables in your Vercel Project Settings Dashboard to enable live emails.";
+      }
       return res.status(500).json({
         success: false,
-        error: error?.message || "Internal server error during email transmission."
+        error: errorMessage
       });
     }
   });
