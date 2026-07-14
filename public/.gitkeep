@@ -1,0 +1,2 @@
+# Drop your logo.png in this public folder to automatically replace the icon in the Navigation Bar.
+# The Navigation Bar component has automatic fallback to a beautiful SVG Shield icon if logo.png is missing.
